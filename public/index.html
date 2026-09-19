@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobPortal - Find Your Dream Job</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">🎯 JobPortal</h1>
+                <p class="tagline">Direct job listings from top companies</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Search Section -->
+            <section class="search-section">
+                <h2>🔍 Find Your Perfect Job</h2>
+                <div class="search-box">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        class="search-input" 
+                        placeholder="🔎 Search by job title, company, or skills..."
+                    >
+                    <button id="searchBtn" class="btn btn-primary">🚀 Search</button>
+                </div>
+
+                <!-- Filters -->
+                <div class="filters">
+                    <select id="locationFilter" class="filter-select">
+                        <option value="">All Locations</option>
+                        <option value="mumbai">Mumbai</option>
+                        <option value="bangalore">Bangalore</option>
+                        <option value="delhi">Delhi</option>
+                        <option value="pune">Pune</option>
+                        <option value="hyderabad">Hyderabad</option>
+                        <option value="chennai">Chennai</option>
+                    </select>
+
+                    <select id="experienceFilter" class="filter-select">
+                        <option value="">All Experience</option>
+                        <option value="junior">Junior</option>
+                        <option value="mid-level">Mid-level</option>
+                        <option value="senior">Senior</option>
+                    </select>
+
+                    <select id="typeFilter" class="filter-select">
+                        <option value="">All Types</option>
+                        <option value="full-time">Full-time</option>
+                        <option value="part-time">Part-time</option>
+                        <option value="contract">Contract</option>
+                    </select>
+
+                    <button id="clearBtn" class="btn btn-secondary">🔄 Clear Filters</button>
+                </div>
+            </section>
+
+            <!-- Results Count -->
+            <div class="results-header">
+                <p id="resultsCount" class="results-count">Loading jobs...</p>
+            </div>
+
+            <!-- Job Listings -->
+            <section class="jobs-section">
+                <div id="jobsContainer" class="jobs-grid">
+                    <!-- Jobs will be loaded here by JavaScript -->
+                </div>
+
+                <!-- Loading State -->
+                <div id="loadingState" class="loading-state">
+                    <div class="spinner"></div>
+                    <p>Loading jobs...</p>
+                </div>
+
+                <!-- Empty State -->
+                <div id="emptyState" class="empty-state" style="display: none;">
+                    <p>😔 No jobs found matching your criteria</p>
+                    <button id="resetBtn" class="btn btn-primary">Reset Filters</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Job Detail Modal -->
+    <div id="jobModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div id="modalBody">
+                <!-- Job details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 JobPortal. Simple job search made easy.</p>
+            <p>Built with ❤️ using Node.js & Express</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
