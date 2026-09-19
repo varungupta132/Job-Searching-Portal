@@ -6,6 +6,6 @@ services:
     startCommand: npm start
     envVars:
       - key: MONGODB_URI
-        sync: false
+        value: mongodb+srv://guptavarun132_db_user:dQH28u9L8Rru_9Q@chatapp.fwtcmjb.mongodb.net/jobportal?retryWrites=true&w=majority
       - key: PORT
         value: 10000

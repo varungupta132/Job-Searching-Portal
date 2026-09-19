@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js",
-    "seed": "node seedJobs.js"
+    "seed": "node seedJobs.js",
+    "build": "npm install"
   },
   "keywords": [
     "jobs",
