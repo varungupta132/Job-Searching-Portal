@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Job Portal</title>
+    <link rel="stylesheet" href="admin-style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="admin-header">
+        <div class="container">
+            <h1 class="admin-logo">🔐 Admin Panel - Job Portal</h1>
+            <div class="admin-nav">
+                <button onclick="showSection('dashboard')" class="nav-btn active" id="dashboard-btn">📊 Dashboard</button>
+                <button onclick="showSection('add-job')" class="nav-btn" id="add-job-btn">➕ Add Job</button>
+                <button onclick="showSection('manage-jobs')" class="nav-btn" id="manage-jobs-btn">📋 Manage Jobs</button>
+                <button onclick="window.location.href='index.html'" class="nav-btn logout-btn">🏠 Back to Site</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="admin-main">
+        <div class="container">
+            
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="admin-section active">
+                <h2>📊 Dashboard</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">💼</div>
+                        <div class="stat-info">
+                            <h3 id="total-jobs">12</h3>
+                            <p>Total Jobs</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🏢</div>
+                        <div class="stat-info">
+                            <h3 id="total-companies">8</h3>
+                            <p>Companies</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📍</div>
+                        <div class="stat-info">
+                            <h3 id="total-locations">6</h3>
+                            <p>Locations</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📈</div>
+                        <div class="stat-info">
+                            <h3 id="recent-jobs">3</h3>
+                            <p>This Week</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="recent-activity">
+                    <h3>🕒 Recent Activity</h3>
+                    <div class="activity-list" id="activity-list">
+                        <div class="activity-item">
+                            <span class="activity-time">2 min ago</span>
+                            <span class="activity-text">Admin logged in</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Add Job Section -->
+            <section id="add-job" class="admin-section">
+                <h2>➕ Add New Job</h2>
+                <form id="add-job-form" class="job-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="job-title">Job Title *</label>
+                            <input type="text" id="job-title" name="title" required placeholder="e.g., Frontend Developer">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="company">Company Name *</label>
+                            <input type="text" id="company" name="company" required placeholder="e.g., Tech Corp">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="location">Location *</label>
+                            <select id="location" name="location" required>
+                                <option value="">Select Location</option>
+                                <option value="Mumbai, India">Mumbai, India</option>
+                                <option value="Bangalore, India">Bangalore, India</option>
+                                <option value="Delhi, India">Delhi, India</option>
+                                <option value="Pune, India">Pune, India</option>
+                                <option value="Hyderabad, India">Hyderabad, India</option>
+                                <option value="Chennai, India">Chennai, India</option>
+                                <option value="Noida, India">Noida, India</option>
+                                <option value="Gurgaon, India">Gurgaon, India</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="job-type">Job Type *</label>
+                            <select id="job-type" name="type" required>
+                                <option value="">Select Type</option>
+                                <option value="Full-time">Full-time</option>
+                                <option value="Part-time">Part-time</option>
+                                <option value="Contract">Contract</option>
+                                <option value="Internship">Internship</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="experience">Experience Level *</label>
+                            <select id="experience" name="experience" required>
+                                <option value="">Select Experience</option>
+                                <option value="Fresher">Fresher</option>
+                                <option value="Junior">Junior (1-2 years)</option>
+                                <option value="Mid-level">Mid-level (3-5 years)</option>
+                                <option value="Senior">Senior (5+ years)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="salary">Salary Range *</label>
+                            <input type="text" id="salary" name="salary" required placeholder="e.g., ₹8-12 LPA">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="description">Job Description *</label>
+                        <textarea id="description" name="description" required rows="4" placeholder="Describe the role, responsibilities, and requirements..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="skills">Required Skills *</label>
+                        <input type="text" id="skills" name="skills" required placeholder="e.g., React, JavaScript, CSS (comma-separated)">
+                        <small>Enter skills separated by commas</small>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">💾 Add Job</button>
+                        <button type="reset" class="btn btn-secondary">🔄 Reset Form</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Manage Jobs Section -->
+            <section id="manage-jobs" class="admin-section">
+                <h2>📋 Manage Jobs</h2>
+                <div class="jobs-header">
+                    <div class="search-box">
+                        <input type="text" id="admin-search" placeholder="🔍 Search jobs..." onkeyup="filterAdminJobs()">
+                    </div>
+                    <div class="filter-box">
+                        <select id="admin-filter" onchange="filterAdminJobs()">
+                            <option value="">All Jobs</option>
+                            <option value="Full-time">Full-time</option>
+                            <option value="Part-time">Part-time</option>
+                            <option value="Contract">Contract</option>
+                            <option value="Internship">Internship</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="jobs-table-container">
+                    <table class="jobs-table">
+                        <thead>
+                            <tr>
+                                <th>Job Title</th>
+                                <th>Company</th>
+                                <th>Location</th>
+                                <th>Type</th>
+                                <th>Salary</th>
+                                <th>Posted</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="jobs-table-body">
+                            <!-- Jobs will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Edit Job Modal -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>✏️ Edit Job</h3>
+                <span class="modal-close">&times;</span>
+            </div>
+            <form id="edit-job-form" class="job-form">
+                <input type="hidden" id="edit-job-id">
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="edit-job-title">Job Title *</label>
+                        <input type="text" id="edit-job-title" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit-company">Company Name *</label>
+                        <input type="text" id="edit-company" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit-location">Location *</label>
+                        <select id="edit-location" required>
+                            <option value="Mumbai, India">Mumbai, India</option>
+                            <option value="Bangalore, India">Bangalore, India</option>
+                            <option value="Delhi, India">Delhi, India</option>
+                            <option value="Pune, India">Pune, India</option>
+                            <option value="Hyderabad, India">Hyderabad, India</option>
+                            <option value="Chennai, India">Chennai, India</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit-job-type">Job Type *</label>
+                        <select id="edit-job-type" required>
+                            <option value="Full-time">Full-time</option>
+                            <option value="Part-time">Part-time</option>
+                            <option value="Contract">Contract</option>
+                            <option value="Internship">Internship</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit-experience">Experience Level *</label>
+                        <select id="edit-experience" required>
+                            <option value="Fresher">Fresher</option>
+                            <option value="Junior">Junior</option>
+                            <option value="Mid-level">Mid-level</option>
+                            <option value="Senior">Senior</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit-salary">Salary Range *</label>
+                        <input type="text" id="edit-salary" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit-description">Job Description *</label>
+                    <textarea id="edit-description" required rows="4"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit-skills">Required Skills *</label>
+                    <input type="text" id="edit-skills" required>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">💾 Update Job</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeEditModal()">❌ Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="admin-script.js"></script>
+</body>
+</html>

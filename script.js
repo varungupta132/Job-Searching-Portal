@@ -1,5 +1,8 @@
-// Fake job data - no backend needed!
-const allJobs = [
+// Global variables
+let allJobs = [];
+
+// Load jobs from localStorage or use default data
+const defaultJobs = [
   {
     id: 1,
     title: 'Frontend Developer',
@@ -146,6 +149,31 @@ const allJobs = [
   }
 ];
 
+// Load jobs from localStorage or use default
+function loadJobsData() {
+  const savedJobs = localStorage.getItem('jobsData');
+  if (savedJobs) {
+    allJobs = JSON.parse(savedJobs);
+  } else {
+    allJobs = [...defaultJobs];
+    localStorage.setItem('jobsData', JSON.stringify(allJobs));
+  }
+}
+
+// Listen for job updates from admin panel
+window.addEventListener('storage', function(e) {
+  if (e.key === 'jobsData') {
+    allJobs = JSON.parse(e.newValue) || defaultJobs;
+    displayJobs(allJobs);
+  }
+});
+
+// Listen for custom events from admin panel
+window.addEventListener('jobsUpdated', function(e) {
+  allJobs = e.detail.jobs;
+  displayJobs(allJobs);
+});
+
 // DOM Elements
 const searchInput = document.getElementById('searchInput');
 const searchBtn = document.getElementById('searchBtn');
@@ -163,6 +191,7 @@ const modalClose = document.querySelector('.modal-close');
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
+    loadJobsData(); // Load jobs from localStorage first
     setTimeout(() => {
         displayJobs(allJobs);
     }, 500); // Simulate loading
